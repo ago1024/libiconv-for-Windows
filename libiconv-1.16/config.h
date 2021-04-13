@@ -817,7 +817,9 @@
 /* #undef size_t */
 
 /* Define as a signed type of the same size as size_t. */
+#ifdef _MSC_VER
 #define ssize_t int
+#endif
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 #define uid_t int
@@ -868,7 +870,7 @@
 
 
 /* On Windows, variables that may be in a DLL must be marked specially.  */
-#if defined _MSC_VER && defined _DLL
+#if (defined _MSC_VER || defined WIN32 || defined _WIN32)  && defined _DLL
 # define DLL_VARIABLE __declspec (dllimport)
 #else
 # define DLL_VARIABLE
